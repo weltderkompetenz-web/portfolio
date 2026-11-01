@@ -1,0 +1,209 @@
+/* ==========================================================================
+   STYLE COMPLÉMENTAIRE PORTFOLIO - CLARIUS EMMANUEL TCHALOKO
+   Tailwind CSS + Custom Glassmorphism, Neon Glow & Cyberpunk Defensive FX
+   ========================================================================== */
+
+/* Variables CSS Thème Sombre (défaut) & Clair */
+:root {
+    --bg-dark: #070b14;
+    --card-bg: rgba(15, 23, 42, 0.75);
+    --card-border: rgba(255, 255, 255, 0.12);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --neon-cyan: #06b6d4;
+    --neon-purple: #8b5cf6;
+    --neon-emerald: #10b981;
+}
+
+html.light {
+    --bg-dark: #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.88);
+    --card-border: rgba(15, 23, 42, 0.12);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+}
+
+html.light body {
+    background-color: #f1f5f9;
+    color: #0f172a;
+}
+
+html.light header {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light .glass {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    color: #0f172a !important;
+}
+
+html.light .glow-card {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+html.light footer {
+    background-color: #e2e8f0 !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    color: #475569 !important;
+}
+
+/* Matrix & Hacker easter egg mode */
+body.hacker-mode {
+    --neon-cyan: #00ff66 !important;
+    --neon-purple: #00cc44 !important;
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+body.hacker-mode .gradient-text {
+    background: linear-gradient(to right, #00ff66, #33ff33, #00aa22) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+/* Glassmorphism Styles */
+.glass {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glow-card {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glow-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(6, 182, 212, 0.4);
+    box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.2);
+}
+
+/* Gradient Text */
+.gradient-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Animations Reveal au Scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Halo Photo Tilt Animation */
+@keyframes tilt {
+    0%, 50%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(1.5deg);
+    }
+    75% {
+        transform: rotate(-1.5deg);
+    }
+}
+
+.animate-tilt {
+    animation: tilt 10s infinite linear;
+}
+
+/* Effet Ripple au clic sur les boutons */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    background-color: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Terminal Mac styling & Fast Code Stream */
+#fast-code-stream {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.code-stream-line {
+    opacity: 0.95;
+    animation: fadeInStream 0.15s ease-out;
+    white-space: nowrap;
+    text-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
+}
+
+@keyframes fadeInStream {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 0.95; transform: translateY(0); }
+}
+
+.token-keyword { color: #f43f5e; font-weight: bold; }
+.token-function { color: #38bdf8; }
+.token-string { color: #34d399; }
+.token-comment { color: #64748b; font-style: italic; }
+.token-number { color: #fbbf24; }
+.token-operator { color: #c084fc; }
+.token-alert { color: #f87171; font-weight: bold; }
+.token-success { color: #4ade80; font-weight: bold; }
+
+/* Navigation Active Link Highlight */
+.nav-link.active-nav {
+    color: #38bdf8 !important;
+    background-color: rgba(56, 189, 248, 0.1);
+    border-bottom: 2px solid #38bdf8;
+}
+
+/* Accessibilité & Préférence de mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .animate-tilt {
+        animation: none !important;
+    }
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #070b14;
+}
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+}
